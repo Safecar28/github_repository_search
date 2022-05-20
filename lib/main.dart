@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github/github.dart';
 
 void main(List<String> args) => runApp(const MyApp());
 
@@ -17,10 +18,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: IconButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => const SearchPage())));
+                  showSearch(context: context, delegate: MySearchDelegate());
                 },
                 icon: const Icon(Icons.search)),
           )
@@ -30,23 +28,51 @@ class HomePage extends StatelessWidget {
   }
 }
 
-//----------------------------- SearchPage -------------------------------     =
+//----------------------------- MySearchDelegate ------------------------------=
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class MySearchDelegate extends SearchDelegate {
+  Future<List<Repository>> fetchSuggestions(String query) {
+    var github = GitHub();
+    return SearchService(github).repositories(query).toList();
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Search Page'),
-        leading: IconButton(
+  Widget? buildLeading(BuildContext context) => IconButton(
+        onPressed: () => close(context, null),
+        icon: const Icon(
+          Icons.arrow_back,
+        ),
+      );
+
+  @override
+  List<Widget>? buildActions(BuildContext context) => [
+        IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              if (query.isEmpty) {
+                close(context, null);
+              } else {
+                query = '';
+              }
             },
-            icon: const Icon(Icons.arrow_back)),
-      ),
-    );
+            icon: const Icon(Icons.clear)),
+      ];
+
+  @override
+  Widget buildResults(BuildContext context) => Container();
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> suggestions = [];
+
+    return ListView.builder(
+        itemCount: 10,
+        itemBuilder: ((context, index) {
+          final suggestion = suggestions[index];
+          return ListTile(
+            title: Text(suggestion),
+            // onTap: () {},
+          );
+        }));
   }
 }
 
@@ -58,7 +84,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Github Repository Search',
       home: HomePage(),
     );
   }
