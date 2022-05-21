@@ -11,21 +11,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomePage'),
-        // actions: [
-        //   Padding(
-        //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-        //     child: IconButton(
-        //         onPressed: () {
-        //           // showSearch(context: context, delegate: MySearchDelegate());
-        //         },
-        //         icon: const Icon(Icons.search)),
-        //   )
-        // ],
+        title: const Text('Home'),
+        backgroundColor: Colors.grey[700],
       ),
       body: const Center(
         child: TapBox(),
       ),
+      backgroundColor: Colors.blueGrey[600],
     );
   }
 }

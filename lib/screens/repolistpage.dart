@@ -25,9 +25,17 @@ class RepoListPage extends StatelessWidget {
           itemBuilder: ((context, index) {
         final suggestion = suggestions[index];
         return ListTile(
-          title: Text(suggestion.name),
-          // onTap: () {},
-        );
+            title: Text(suggestion.name),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return Row(
+                    children: const <
+                        Widget>[], //TODO: add list of repository properties
+                  );
+                },
+              ));
+            });
       })),
     );
   }

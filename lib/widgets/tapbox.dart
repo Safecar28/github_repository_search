@@ -27,8 +27,10 @@ class _TapBoxState extends State<TapBox> {
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(8.0),
           color: Colors.grey,
+          image: const DecorationImage(
+            image: AssetImage('./images/search_icon.png'),
+          ),
         ),
-        child: const Icon(Icons.search),
       ),
     );
   }
