@@ -11,11 +11,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Welcome to GitHub Repository Search!'),
         backgroundColor: Colors.grey[700],
       ),
-      body: const Center(
-        child: TapBox(),
+      body: Center(
+        child: ListView(
+          padding: const EdgeInsets.all(24.0),
+          children: const <Widget>[
+            TapBox(),
+            Card(
+                child: Text('About',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ))),
+          ],
+        ),
       ),
       backgroundColor: Colors.blueGrey[600],
     );

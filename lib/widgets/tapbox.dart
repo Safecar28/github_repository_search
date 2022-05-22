@@ -13,7 +13,7 @@ class TapBox extends StatefulWidget {
 class _TapBoxState extends State<TapBox> {
   void _nav() => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => RepoListPage()),
+        MaterialPageRoute(builder: (context) => const RepoListPage()),
       );
 
   @override
@@ -22,7 +22,7 @@ class _TapBoxState extends State<TapBox> {
       onTap: _nav,
       child: Container(
         width: 200.0,
-        height: 200.0,
+        height: 50.0,
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(8.0),

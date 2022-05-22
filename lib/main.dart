@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import '/screens/homepage.dart';
+// import '/screens/repolistpage.dart';
+// import '/data/static_fetch.dart';
 
-void main(List<String> args) => runApp(const MyApp());
+void main(List<String> args) {
+  runApp(const MyApp());
+}
 
 //----------------------------- MyApp -------------------------------          =
 
@@ -13,7 +17,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Github Repository Search',
       home: HomePage(),
-      debugShowCheckedModeBanner: false,
+      // debugShowCheckedModeBanner: false,
     );
   }
 }
