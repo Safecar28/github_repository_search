@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '/screens/repolistpage.dart';
+// import '/screens/repolistpage.dart';
+import '/services/search.dart';
 
 //----------------------------- TapBox -----------------------------           =
 
@@ -11,10 +12,7 @@ class TapBox extends StatefulWidget {
 }
 
 class _TapBoxState extends State<TapBox> {
-  void _nav() => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const RepoListPage()),
-      );
+  void _nav() => showSearch(context: context, delegate: MySearchDelegate());
 
   @override
   Widget build(BuildContext context) {

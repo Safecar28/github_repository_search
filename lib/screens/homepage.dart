@@ -16,15 +16,23 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: ListView(
-          padding: const EdgeInsets.all(24.0),
-          children: const <Widget>[
-            TapBox(),
-            Card(
-                child: Text('About',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ))),
+          padding: const EdgeInsets.all(25.0),
+          children: <Widget>[
+            const Text('Start Searching Below:'),
+            // const TapBox(),
+            Container(
+              width: 200.0,
+              height: 50.0,
+              decoration: const BoxDecoration(
+                color: Colors.grey,
+                // borderRadius: BorderRadius.horizontal(
+                //     left: Radius.circular(20), right: Radius.circular(20)),
+              ),
+              child: TextField(
+                controller: TextEditingController(text: 'Search'),
+                // focusNode: FocusNode(),
+              ),
+            ),
           ],
         ),
       ),

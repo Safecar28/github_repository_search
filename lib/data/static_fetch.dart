@@ -2,7 +2,7 @@
 
 import 'package:github/github.dart';
 
-final List<Repository> results = devFetchStaticRepos();
+// final List<Repository> results = devFetchStaticRepos();
 
 List<Repository> devFetchStaticRepos() {
   Repository rModel = Repository(
@@ -11,6 +11,11 @@ List<Repository> devFetchStaticRepos() {
     permissions: RepositoryPermissions(admin: true, push: true, pull: true),
     description: 'A fake repository created for testing this project.',
     language: 'Rust',
+    isPrivate: false,
+    isFork: false,
+    license: LicenseKind(
+      name: 'Fake License',
+    ),
   );
   List<Repository> repos = [rModel];
   List<String> repoNames = [

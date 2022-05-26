@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '/screens/homepage.dart';
+// import 'package:flutter/rendering.dart';
 // import '/screens/repolistpage.dart';
 // import '/data/static_fetch.dart';
 
 void main(List<String> args) {
+  // debugRepaintRainbowEnabled = true;
   runApp(const MyApp());
 }
 
