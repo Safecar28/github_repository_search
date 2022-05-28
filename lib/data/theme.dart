@@ -20,4 +20,7 @@ final ThemeData myTheme = ThemeData(
         GoogleFonts.comfortaa(fontSize: 72.0, fontWeight: FontWeight.bold),
     bodyText1: GoogleFonts.ubuntu(fontSize: 14.0),
   ),
+
+  //CardTheme
+  cardTheme: const CardTheme(elevation: 2.0),
 );
