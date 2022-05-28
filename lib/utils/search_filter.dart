@@ -3,8 +3,10 @@
 //Packagaes
 import 'package:flutter/material.dart';
 import 'package:github/github.dart';
+import 'package:invenira/auth_token.dart';
 import 'package:invenira/data/fake_repositories.dart';
 import 'package:invenira/widgets/search_widget.dart';
+import 'package:invenira/pages/repo.dart';
 
 //---------------------------- SearchFilter -----------------------------      =
 
@@ -19,22 +21,17 @@ class _SearchFilterState extends State<SearchFilter> {
   List<Repository> repos = fakeRepoGen();
   String query = '';
 
-  void updateSuggestions(String query) {
-    GitHub github = GitHub();
+  void search(String query) async {
+    GitHub github = GitHub(
+      auth: Authentication.withToken(authToken),
+    );
 
-    SearchService(github).repositories(query).asBroadcastStream().listen((r) {
-      repos.add(r);
-    });
+    List<Repository> retrievals =
+        await SearchService(github).repositories(query).toList();
 
     setState(() {
-      this.query = query;
+      repos = retrievals;
     });
-  }
-
-  void search(String query) async {
-    GitHub github = GitHub();
-
-    repos = await SearchService(github).repositories(query).toList();
   }
 
   Widget buildSearch() => SearchWidget(
@@ -44,14 +41,22 @@ class _SearchFilterState extends State<SearchFilter> {
       );
 
   Widget buildRepoDisplay(Repository repo) {
-    return Card(
-      elevation: 2.0,
-      child: ListTile(
-        title: Text(repo.fullName),
-        subtitle: Text(repo.language),
-        trailing: repo.owner?.avatarUrl == null
-            ? Image.asset('account_circle.png')
-            : Image.network(repo.owner!.avatarUrl),
+    final avatarImage = repo.owner?.avatarUrl == null
+        ? Image.asset('account_circle.png')
+        : Image.network(repo.owner!.avatarUrl);
+
+    return GestureDetector(
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) => RepoPage(repo, avatarImage)))),
+      child: Card(
+        elevation: 2.0,
+        child: ListTile(
+          title: Text(repo.fullName),
+          subtitle: Text(repo.language),
+          trailing: avatarImage,
+        ),
       ),
     );
   }

@@ -46,8 +46,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Unnecessary
+# AuthToken
 
-/linux/
-/macos/
-/ios/
+auth_token.dart
