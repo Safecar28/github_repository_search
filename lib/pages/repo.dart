@@ -16,12 +16,23 @@ class RepoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(repo.fullName),
         leading: avatarImage,
+        title: Text(repo.fullName),
       ),
-      // body: Column(
-      //   children: const <Widget>[],
-      // ),
+      body: Column(
+        children: <Widget>[
+          Card(
+            elevation: 0.2,
+            child: Row(
+              children: <Widget>[
+                avatarImage,
+                Text(repo.description),
+                Text(repo.homepage)
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
